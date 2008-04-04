@@ -2,6 +2,7 @@
 
   <div id="content_div"></div>
   <script type="text/javascript"> 
+  // <!--
   function displayMenu() { 
     // XML breakfast menu data
     var url = "http://technocrat7.googlepages.com/books_bn.xml";
@@ -99,6 +100,7 @@
     }); 
   }
   _IG_RegisterOnloadHandler(displayMenu);
+  // -->
   </script>
   
 

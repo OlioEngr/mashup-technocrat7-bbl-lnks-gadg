@@ -1,6 +1,32 @@
 <gm:page title="Bible Links" authenticate="false">
+  
+  <gm:data id="bkdata" data="http://spreadsheets.google.com/feeds/list/o11070467743159310010.8474335362509380687/oda/public/basic"/>
 
+  <h1>Bible Links</h1>
   <div id="content_div"></div>
+  <gm:list template="bktemp" data="${bkdata}"/>
+  
+  <gm:template id="bktempdebug">
+    <div repeat="true" style="border:1px solid green">
+      <gm:debug ref="."/>
+    </div>
+  </gm:template>
+  <gm:template id="bktemp">
+    <table class="gm-table">
+      <thead>
+        <tr>
+          <th width="200">Name</th>  
+          <th width="55">Number</th>
+          <th width="200">ESV</th>
+        </tr>
+      </thead>
+      <tr repeat="true">
+        <td><gm:text ref="atom:title" default=""/></td>
+        <td><gm:number ref="atom:content" default="3" size="3"/></td>
+        <td><gm:text ref="atom:content" hint="Enter comment."/></td>        
+      </tr>
+    </table>
+  </gm:template>
   <script type="text/javascript"> 
   // <!--
   function displayMenu() { 
@@ -21,12 +47,10 @@
 
            // Start building HTML string that will be displayed in <div>.           
            // Set the style for the <div>.		
-           var html = "<div style='padding: 5px;background-color: #ccf;font-family:Arial, Helvetica;" +                   
-		          "text-align:left;font-size:90%'>";   
-					    
+           var html = "<div style='padding: 5px;background-color: #ccf;font-family:Arial, Helvetica; text-align:left;font-size:90%'>";   
+
            // Set style for title.
-           html +="<div style='text-align:center; font-size: 120%; color: yellow; " +
-		          "font-weight: 700;'>"; 
+           html +="<div style='text-align:center; font-size: 120%; color: yellow; font-weight: 700;'>"; 
 
            // Display menu title. Use getElementsByTagName() to retrieve the <menu> element.
            // Since there is only one menu element in the file,
@@ -99,7 +123,7 @@
         _gel('content_div').innerHTML = html;
     }); 
   }
-  _IG_RegisterOnloadHandler(displayMenu);
+  _IG_RegisterOnloadHandler(displayMenu());
   // -->
   </script>
   
